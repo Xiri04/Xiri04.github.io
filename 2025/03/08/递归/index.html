@@ -19,26 +19,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题目: LeetCode 76给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 “” 。 示例 1：输入：s &#x3D; “ADOBECODEBANC”, t &#x3D; “ABC”输出：”BANC”解释：最小覆盖子串 “BANC” 包含来自字符串 t 的 ‘A’、’B’ 和 ‘C’。 示例 2：输入：">
+    <meta name="description" content="本文主要是突然灵光一现，貌似理解如何写递归，于是写下来记录 如何理解递归递归就是将原问题拆分成子问题，再将结果整合。类似于数列递推（对于计数方面的问题） 如何写递归 确定递归边界 确定递归公式（难点主要是这一步）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最小覆盖子串">
-<meta property="og:url" content="http://example.com/2025/02/26/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/index.html">
+<meta property="og:title" content="递归">
+<meta property="og:url" content="http://example.com/2025/03/08/%E9%80%92%E5%BD%92/index.html">
 <meta property="og:site_name" content="系日">
-<meta property="og:description" content="题目: LeetCode 76给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 “” 。 示例 1：输入：s &#x3D; “ADOBECODEBANC”, t &#x3D; “ABC”输出：”BANC”解释：最小覆盖子串 “BANC” 包含来自字符串 t 的 ‘A’、’B’ 和 ‘C’。 示例 2：输入：">
+<meta property="og:description" content="本文主要是突然灵光一现，貌似理解如何写递归，于是写下来记录 如何理解递归递归就是将原问题拆分成子问题，再将结果整合。类似于数列递推（对于计数方面的问题） 如何写递归 确定递归边界 确定递归公式（难点主要是这一步）">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-02-25T16:54:44.000Z">
-<meta property="article:modified_time" content="2025-02-25T16:56:49.689Z">
+<meta property="article:published_time" content="2025-03-08T08:14:21.000Z">
+<meta property="article:modified_time" content="2025-03-10T08:38:50.727Z">
 <meta property="article:author" content="Xiri04">
+<meta property="article:tag" content="递归">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2025/02/26/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/">
+<link rel="canonical" href="http://example.com/2025/03/08/%E9%80%92%E5%BD%92/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/02/26/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/","path":"2025/02/26/最小覆盖子串/","title":"最小覆盖子串"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/03/08/%E9%80%92%E5%BD%92/","path":"2025/03/08/递归/","title":"递归"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>最小覆盖子串 | 系日</title>
+<title>递归 | 系日</title>
   
 
 
@@ -107,7 +108,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-LeetCode-76"><span class="nav-number">1.</span> <span class="nav-text">题目: LeetCode 76</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">分析</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E9%80%92%E5%BD%92"><span class="nav-number">1.</span> <span class="nav-text">如何理解递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%86%99%E9%80%92%E5%BD%92"><span class="nav-number">2.</span> <span class="nav-text">如何写递归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%8E%E7%A1%AE%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E4%BB%80%E4%B9%88%E5%80%BC%E3%80%82%EF%BC%88%E8%BF%99%E4%B8%80%E6%AD%A5%E8%AE%A9%E6%88%91%E5%9B%B0%E6%89%B0%E4%BA%86%E5%BE%88%E4%B9%85%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">明确函数返回什么值。（这一步让我困扰了很久）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%87%BA%E7%B1%BB%E4%BC%BC%E6%95%B0%E5%88%97%E9%80%92%E6%8E%A8%E5%85%AC%E5%BC%8F%E7%9A%84%E5%BC%8F%E5%AD%90-or-%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">写出类似数列递推公式的式子 or 伪代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8A%E4%B8%A4%E7%82%B9%E6%B2%A1%E6%9C%89%E5%85%88%E5%90%8E"><span class="nav-number">2.2.1.</span> <span class="nav-text">以上两点没有先后</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E5%B7%A7%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">技巧：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -152,7 +153,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/26/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/08/%E9%80%92%E5%BD%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -165,12 +166,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="最小覆盖子串 | 系日">
+      <meta itemprop="name" content="递归 | 系日">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          最小覆盖子串
+          递归
         </h1>
 
         <div class="post-meta-container">
@@ -180,9 +181,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2025-02-26 00:54:44 / Modified: 00:56:49" itemprop="dateCreated datePublished" datetime="2025-02-26T00:54:44+08:00">2025-02-26</time>
+      <time title="Created: 2025-03-08 16:14:21" itemprop="dateCreated datePublished" datetime="2025-03-08T16:14:21+08:00">2025-03-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-03-10 16:38:50" itemprop="dateModified" datetime="2025-03-10T16:38:50+08:00">2025-03-10</time>
     </span>
 
   
@@ -194,13 +201,18 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="题目-LeetCode-76"><a href="#题目-LeetCode-76" class="headerlink" title="题目: LeetCode 76"></a>题目: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-window-substring/?envType=study-plan-v2&envId=top-100-liked">LeetCode 76</a></h3><p>给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 “” 。</p>
-<p>示例 1：<br>输入：s &#x3D; “ADOBECODEBANC”, t &#x3D; “ABC”<br>输出：”BANC”<br>解释：最小覆盖子串 “BANC” 包含来自字符串 t 的 ‘A’、’B’ 和 ‘C’。</p>
-<p>示例 2：<br>输入：s &#x3D; “a”, t &#x3D; “a”<br>输出：”a”<br>解释：整个字符串 s 是最小覆盖子串。</p>
-<p>示例 3:<br>输入: s &#x3D; “a”, t &#x3D; “aa”<br>输出: “”<br>解释: t 中两个字符 ‘a’ 均应包含在 s 的子串中，因此没有符合条件的子字符串，返回空字符串。</p>
-<hr>
-<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>本题为大小可变的滑动窗口，与<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/?envType=study-plan-v2&envId=top-100-liked">LeetCode 3</a>类似，但是左右指针的滑动条件有所不同。</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3>
+    <div class="post-body" itemprop="articleBody"><p>本文主要是突然灵光一现，貌似理解如何写递归，于是写下来记录</p>
+<h2 id="如何理解递归"><a href="#如何理解递归" class="headerlink" title="如何理解递归"></a>如何理解递归</h2><p>递归就是将原问题拆分成子问题，再将结果整合。类似于数列递推（对于计数方面的问题）</p>
+<h2 id="如何写递归"><a href="#如何写递归" class="headerlink" title="如何写递归"></a>如何写递归</h2><ol>
+<li>确定递归边界</li>
+<li>确定递归公式（难点主要是这一步）</li>
+</ol>
+<h3 id="明确函数返回什么值。（这一步让我困扰了很久）"><a href="#明确函数返回什么值。（这一步让我困扰了很久）" class="headerlink" title="明确函数返回什么值。（这一步让我困扰了很久）"></a>明确函数返回什么值。（这一步让我困扰了很久）</h3><ol>
+<li>可以从原问题的返回值入手(例如：斐波那契数列，汉诺塔)</li>
+<li>可以从递归逻辑入手(需要什么就返回这个)(树相关)(例如:(从前序和中序遍历构造树)[]需要左子树和右子树，所以返回的是 TreeNode)</li>
+</ol>
+<h3 id="写出类似数列递推公式的式子-or-伪代码"><a href="#写出类似数列递推公式的式子-or-伪代码" class="headerlink" title="写出类似数列递推公式的式子 or 伪代码"></a>写出类似数列递推公式的式子 or 伪代码</h3><h4 id="以上两点没有先后"><a href="#以上两点没有先后" class="headerlink" title="以上两点没有先后"></a><strong><em>以上两点没有先后</em></strong></h4><h3 id="技巧："><a href="#技巧：" class="headerlink" title="技巧："></a>技巧：</h3><p>1.先不用管函数有没有实现，假设有一个同名函数可以实现函数功能。</p>
+
     </div>
 
     
@@ -208,18 +220,21 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%80%92%E5%BD%92/" rel="tag"># 递归</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/02/26/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" rel="prev" title="滑动窗口">
-                  <i class="fa fa-angle-left"></i> 滑动窗口
+                <a href="/2025/03/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86/" rel="prev" title="二叉树的三种遍历">
+                  <i class="fa fa-angle-left"></i> 二叉树的三种遍历
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/02/27/SDF%E9%9D%A2%E9%83%A8%E9%98%B4%E5%BD%B1/" rel="next" title="SDF面部阴影">
-                  SDF面部阴影 <i class="fa fa-angle-right"></i>
+                <a href="/2025/03/10/%E4%BB%8E%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E5%92%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E6%A0%91/" rel="next" title="从前序遍历和中序遍历构造树">
+                  从前序遍历和中序遍历构造树 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
