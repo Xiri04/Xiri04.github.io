@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,31 +13,38 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-
-    <meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="系日">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="系日">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Xiri04">
 <meta name="twitter:card" content="summary">
-
 
 <link rel="canonical" href="http://example.com/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
 
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>系日</title>
+  <title>系日</title>
   
-
-
 
 
 
@@ -45,36 +52,59 @@
 
 
   <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
+      <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">系日</h1>
-      <i class="logo-line"></i>
+      <span class="logo-line-after"><i></i></span>
     </a>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -82,111 +112,74 @@
 
 
 
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
 
 
 
-</header>
-        
-  
-  <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Xiri04</p>
-  <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">9</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">tags</span>
-      </div>
-  </nav>
-</div>
-
-        </div>
-      </div>
-    </div>
+    </header>
 
     
-  </aside>
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
-    </div>
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-    <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
+          <div class="content index posts-expand">
+            
+      
   
   
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/10/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8compute-shader/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="系日">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 系日">
-      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/10/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/" class="post-title-link" itemprop="url">如何理解傅里叶变换</a>
+          
+            <a href="/2025/04/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8compute-shader/" class="post-title-link" itemprop="url">如何使用compute shader</a>
         </h2>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-      <time title="Created: 2025-03-10 17:51:27" itemprop="dateCreated datePublished" datetime="2025-03-10T17:51:27+08:00">2025-03-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-11 21:55:38" itemprop="dateModified" datetime="2025-03-11T21:55:38+08:00">2025-03-11</time>
-    </span>
+              <time title="创建时间：2025-04-03 00:17:06 / 修改时间：01:03:38" itemprop="dateCreated datePublished" datetime="2025-04-03T00:17:06+08:00">2025-04-03</time>
+            </span>
 
-  
-</div>
+          
 
         </div>
       </header>
@@ -195,12 +188,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h1><h2 id="从三维坐标变换引入"><a href="#从三维坐标变换引入" class="headerlink" title="从三维坐标变换引入"></a>从三维坐标变换引入</h2><p>在一个三维空间 O-xyz 中有一点 P(a,b,c),取三维空间三组单位正交基 i,j,k, $\vec{OP}$=$\begin{bmatrix}a\\b\\c\end{bmatrix}$。<br>如果想将其坐标变换为另一组单位正交基$i_1$,$j_1$,$k_1$下的坐标, 则需要将$\vec{OP}$与$i_1$,$j_1$,$k_1$分别求内积(点乘),由于$i_1$,$j_1$,$k_1$为单位基,点乘结果即为投影系数</p>
-<h2 id="k-维向量"><a href="#k-维向量" class="headerlink" title="k 维向量"></a>k 维向量</h2><p>求 k 维向量 u 在基向量$v_i$ 上的投影 u<sub>(v)</sub>,u<sub>(v)</sub>= $u_1$·$v_{i1}$+$u_2$·$v_{i2}$+······+$u_k$·$v_{ik}$=$\sum_{i=1}^k$ $u_i$·$v_i$</p>
+
+      
+          <h1 id="认识-compute-shader"><a href="#认识-compute-shader" class="headerlink" title="认识 compute shader"></a>认识 compute shader</h1><p>当我们创建一个新的 compute shader 时，unity 会创建一个初始为一下内容的 compute shader 文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Each #kernel tells which function to compile; you can have many kernels</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> kernel CSMain</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a RenderTexture with enableRandomWrite flag and set it</span></span><br><span class="line"><span class="comment">// with cs.SetTexture</span></span><br><span class="line">RWTexture2D&lt;float4&gt; Result;</span><br><span class="line"></span><br><span class="line">[<span class="built_in">numthreads</span>(<span class="number">8</span>,<span class="number">8</span>,<span class="number">1</span>)]</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CSMain</span> <span class="params">(uint3 id : SV_DispatchThreadID)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> insert actual code here!</span></span><br><span class="line"></span><br><span class="line">    Result[id.xy] = <span class="built_in">float4</span>(id.x &amp; id.y, (id.x &amp; <span class="number">15</span>)/<span class="number">15.0</span>, (id.y &amp; <span class="number">15</span>)/<span class="number">15.0</span>, <span class="number">0.0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="解读"><a href="#解读" class="headerlink" title="解读"></a>解读</h2><ol>
+<li><code>#pragma kernel CSMain</code>：表示编译器需要编译的核函数。与下文的<code>void CSMain (uint3 id : SV_DispatchThreadID)</code>相对应。<br>即先声明一个核函数，再在下面实现它。</li>
+<li><code>RWTexture2D&lt;float4&gt; Result;</code>：表示一个可读写的二维纹理，存储的是 float4。可以在 compute shader 中读写。</li>
+<li><code>numthreads(8,8,1)</code>：表示每个线程组的线程数。这里是 8x8x1 的线程组。对于每个核函数的实现，其之前需要声明一个线程组的大小。</li>
+<li><code>void CSMain (uint3 id : SV_DispatchThreadID)</code>：表示核函数的实现。<code>id</code> 是一个三维向量，表示当前线程在整个线程组中的 ID。<code>SV_DispatchThreadID</code> 是一个系统值语义，表示当前线程的 ID。</li>
+</ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2025/03/10/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/#more" rel="contents">
-                Read more &raquo;
+              <a class="btn" href="/2025/04/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8compute-shader/#more" rel="contents">
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -211,59 +212,47 @@
     
     
     
-
-    <footer class="post-footer">
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
+  
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/10/%E4%BB%8E%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E5%92%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E6%A0%91/">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/26/%E5%9B%9E%E6%BA%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="系日">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 系日">
-      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/10/%E4%BB%8E%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E5%92%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E6%A0%91/" class="post-title-link" itemprop="url">从前序遍历和中序遍历构造树</a>
+          
+            <a href="/2025/03/26/%E5%9B%9E%E6%BA%AF/" class="post-title-link" itemprop="url">回溯</a>
         </h2>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-      <time title="Created: 2025-03-10 15:43:06" itemprop="dateCreated datePublished" datetime="2025-03-10T15:43:06+08:00">2025-03-10</time>
-    </span>
+              <time title="创建时间：2025-03-26 23:10:40 / 修改时间：23:11:01" itemprop="dateCreated datePublished" datetime="2025-03-26T23:10:40+08:00">2025-03-26</time>
+            </span>
 
-  
-</div>
+          
 
         </div>
       </header>
@@ -272,6 +261,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
+
+      
           
       
     </div>
@@ -279,66 +270,53 @@
     
     
     
-
-    <footer class="post-footer">
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
+  
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/08/%E9%80%92%E5%BD%92/">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/16/FFT%E6%B0%B4%E9%9D%A2%E6%A8%A1%E6%8B%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="系日">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 系日">
-      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/08/%E9%80%92%E5%BD%92/" class="post-title-link" itemprop="url">递归</a>
+          
+            <a href="/2025/03/16/FFT%E6%B0%B4%E9%9D%A2%E6%A8%A1%E6%8B%9F/" class="post-title-link" itemprop="url">FFT水面模拟</a>
         </h2>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-      <time title="Created: 2025-03-08 16:14:21" itemprop="dateCreated datePublished" datetime="2025-03-08T16:14:21+08:00">2025-03-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-10 16:38:50" itemprop="dateModified" datetime="2025-03-10T16:38:50+08:00">2025-03-10</time>
-    </span>
+              <time title="创建时间：2025-03-16 00:58:27" itemprop="dateCreated datePublished" datetime="2025-03-16T00:58:27+08:00">2025-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-22 13:31:51" itemprop="dateModified" datetime="2025-03-22T13:31:51+08:00">2025-03-22</time>
+              </span>
 
-  
-</div>
+          
 
         </div>
       </header>
@@ -347,6 +325,213 @@
     
     
     <div class="post-body" itemprop="articleBody">
+
+      
+          <p>ps:FFT 只是 DFT 的快速算法，在水面模拟中也是起一个优化作用，本质还是 DFT。而更重要的是如何生成高度频谱。</p>
+<h1 id="DFT"><a href="#DFT" class="headerlink" title="DFT"></a>DFT</h1><h2 id="从-FT-到-DTFT"><a href="#从-FT-到-DTFT" class="headerlink" title="从 FT 到 DTFT"></a>从 FT 到 DTFT</h2><p>FT(傅里叶变换)相关知识见<a href="/2025/03/10/如何理解傅里叶变换/#more">如何理解傅里叶变换</a>。而 DFDT(离散时间傅里叶变换)不过是取一段时间内的时域连续信号将其作为周期信号(周期为 T)进行采样，将 dt 变为$ \Delta t$积分变为求和。那么最终公式即为</p>
+<script type="math/tex; mode=display">
+X(\omega)=\sum_{i=1}^{n}x[n] e^{-j \omega n}</script><p>ps:n 表示第 n 个数而非时间<br>因为$ \omega $连续，此时频域上仍然连续。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/03/16/FFT%E6%B0%B4%E9%9D%A2%E6%A8%A1%E6%8B%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/10/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="系日">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/03/10/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/" class="post-title-link" itemprop="url">如何理解傅里叶变换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-10 17:51:27" itemprop="dateCreated datePublished" datetime="2025-03-10T17:51:27+08:00">2025-03-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-20 20:11:40" itemprop="dateModified" datetime="2025-03-20T20:11:40+08:00">2025-03-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h1><h2 id="从三维坐标变换引入"><a href="#从三维坐标变换引入" class="headerlink" title="从三维坐标变换引入"></a>从三维坐标变换引入</h2><p>在一个三维空间 O-xyz 中有一点 P(a,b,c),取三维空间三组单位正交基 i,j,k, $\vec{OP}$=$\begin{bmatrix}a\\b\\c\end{bmatrix}$。<br>如果想将其坐标变换为另一组单位正交基$i_1$,$j_1$,$k_1$下的坐标, 则需要将$\vec{OP}$与$i_1$,$j_1$,$k_1$分别求内积(点乘),由于$i_1$,$j_1$,$k_1$为单位基,点乘结果即为投影系数</p>
+<h2 id="k-维向量"><a href="#k-维向量" class="headerlink" title="k 维向量"></a>k 维向量</h2><p>求 k 维向量 u 在基向量$v_i$ 上的投影 u<sub>(v)</sub>,u<sub>(v)</sub>= $u_1$·$v_{i1}$+$u_2$·$v_{i2}$+······+$u_k$·$v_{ik}$=$\sum_{i=1}^k$ $u_i$·$v_i$</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/03/10/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/10/%E4%BB%8E%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E5%92%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="系日">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/03/10/%E4%BB%8E%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E5%92%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E6%A0%91/" class="post-title-link" itemprop="url">从前序遍历和中序遍历构造树</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-10 15:43:06" itemprop="dateCreated datePublished" datetime="2025-03-10T15:43:06+08:00">2025-03-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/08/%E9%80%92%E5%BD%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="系日">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/03/08/%E9%80%92%E5%BD%92/" class="post-title-link" itemprop="url">递归</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-08 16:14:21" itemprop="dateCreated datePublished" datetime="2025-03-08T16:14:21+08:00">2025-03-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-10 16:38:50" itemprop="dateModified" datetime="2025-03-10T16:38:50+08:00">2025-03-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
           <p>本文主要是突然灵光一现，貌似理解如何写递归，于是写下来记录</p>
 <h2 id="如何理解递归"><a href="#如何理解递归" class="headerlink" title="如何理解递归"></a>如何理解递归</h2><p>递归就是将原问题拆分成子问题，再将结果整合。类似于数列递推（对于计数方面的问题）</p>
 <h2 id="如何写递归"><a href="#如何写递归" class="headerlink" title="如何写递归"></a>如何写递归</h2><ol>
@@ -356,7 +541,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/03/08/%E9%80%92%E5%BD%92/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -367,66 +552,53 @@
     
     
     
-
-    <footer class="post-footer">
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
+  
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86/">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%A4%9A%E7%A7%8D%E9%81%8D%E5%8E%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="系日">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 系日">
-      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86/" class="post-title-link" itemprop="url">二叉树的三种遍历</a>
+          
+            <a href="/2025/03/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%A4%9A%E7%A7%8D%E9%81%8D%E5%8E%86/" class="post-title-link" itemprop="url">二叉树的多种遍历</a>
         </h2>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-      <time title="Created: 2025-03-06 23:14:33" itemprop="dateCreated datePublished" datetime="2025-03-06T23:14:33+08:00">2025-03-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-07 00:04:16" itemprop="dateModified" datetime="2025-03-07T00:04:16+08:00">2025-03-07</time>
-    </span>
+              <time title="创建时间：2025-03-06 23:14:33" itemprop="dateCreated datePublished" datetime="2025-03-06T23:14:33+08:00">2025-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-14 19:00:41" itemprop="dateModified" datetime="2025-03-14T19:00:41+08:00">2025-03-14</time>
+              </span>
 
-  
-</div>
+          
 
         </div>
       </header>
@@ -435,74 +607,72 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-前序遍历"><a href="#1-前序遍历" class="headerlink" title="1.前序遍历"></a>1.前序遍历</h1><h2 id="顺序：根左右"><a href="#顺序：根左右" class="headerlink" title="顺序：根左右"></a>顺序：根左右</h2><p>翻译: 也就是说先访问根节点，再访问根节点的左子树，最后访问根节点的右子树<br>根据翻译可以写出其递归公式</p>
 
+      
+          <h1 id="1-前序遍历"><a href="#1-前序遍历" class="headerlink" title="1.前序遍历"></a>1.前序遍历</h1><h2 id="顺序：根左右"><a href="#顺序：根左右" class="headerlink" title="顺序：根左右"></a>顺序：根左右</h2><p>翻译: 也就是说先访问根节点，再访问根节点的左子树，最后访问根节点的右子树<br>根据翻译可以写出其递归公式<br>DFS(root)=root-&gt;val+DFS(root-&gt;left)+DFS(root-&gt;right);<br>递归边界则是访问到空节点返回 null;<br>所以程序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; <span class="built_in">DFS</span>(TreeNode *root)&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> &lt;T&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里执行一些你需要的操作</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">DFS</span>(root-&gt;left);</span><br><span class="line">    <span class="built_in">DFS</span>(root-&gt;right);</span><br><span class="line">    <span class="comment">//后面也可以加需要的操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2-中序遍历"><a href="#2-中序遍历" class="headerlink" title="2.中序遍历"></a>2.中序遍历</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/03/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%A4%9A%E7%A7%8D%E9%81%8D%E5%8E%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
     
     
     
-
-    <footer class="post-footer">
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
+  
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/04/%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="系日">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 系日">
-      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/04/%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">链表</a>
+          
+            <a href="/2025/03/04/%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">链表</a>
         </h2>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-      <time title="Created: 2025-03-04 00:44:21" itemprop="dateCreated datePublished" datetime="2025-03-04T00:44:21+08:00">2025-03-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-03-06 21:27:17" itemprop="dateModified" datetime="2025-03-06T21:27:17+08:00">2025-03-06</time>
-    </span>
+              <time title="创建时间：2025-03-04 00:44:21" itemprop="dateCreated datePublished" datetime="2025-03-04T00:44:21+08:00">2025-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-06 21:27:17" itemprop="dateModified" datetime="2025-03-06T21:27:17+08:00">2025-03-06</time>
+              </span>
 
-  
-</div>
+          
 
         </div>
       </header>
@@ -511,14 +681,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
+
+      
           <p>本文主要记录算法题目中链表常用方法，链表定义在此不多赘述。</p>
 <h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">ListNode</span> &#123;</span><br><span class="line"> *     <span class="type">int</span> val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     <span class="built_in">ListNode</span>() : <span class="built_in">val</span>(<span class="number">0</span>), <span class="built_in">next</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line"> *     <span class="built_in">ListNode</span>(<span class="type">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">next</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line"> *     <span class="built_in">ListNode</span>(<span class="type">int</span> x, ListNode *next) : <span class="built_in">val</span>(x), <span class="built_in">next</span>(next) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="常用处理方法"><a href="#常用处理方法" class="headerlink" title="常用处理方法"></a>常用处理方法</h2><h3 id="1-哑节点-dummy-node"><a href="#1-哑节点-dummy-node" class="headerlink" title="1.*哑节点(dummy node)"></a>1.<strong>*<em>哑节点(dummy node)</em></strong></h3>
+<h2 id="常用处理方法"><a href="#常用处理方法" class="headerlink" title="常用处理方法"></a>常用处理方法</h2><h3 id="1-哑节点-dummy-node"><a href="#1-哑节点-dummy-node" class="headerlink" title="1.*_哑节点(dummy node)_"></a>1.<strong>*_哑节点(dummy node)_</strong></h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/03/04/%E9%93%BE%E8%A1%A8/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -529,66 +700,53 @@
     
     
     
-
-    <footer class="post-footer">
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
+  
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/27/SDF%E9%9D%A2%E9%83%A8%E9%98%B4%E5%BD%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="系日">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 系日">
-      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/27/SDF%E9%9D%A2%E9%83%A8%E9%98%B4%E5%BD%B1/" class="post-title-link" itemprop="url">SDF面部阴影</a>
+          
+            <a href="/2025/02/27/SDF%E9%9D%A2%E9%83%A8%E9%98%B4%E5%BD%B1/" class="post-title-link" itemprop="url">SDF面部阴影</a>
         </h2>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-      <time title="Created: 2025-02-27 11:48:22" itemprop="dateCreated datePublished" datetime="2025-02-27T11:48:22+08:00">2025-02-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-02-28 00:33:34" itemprop="dateModified" datetime="2025-02-28T00:33:34+08:00">2025-02-28</time>
-    </span>
+              <time title="创建时间：2025-02-27 11:48:22" itemprop="dateCreated datePublished" datetime="2025-02-27T11:48:22+08:00">2025-02-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-06 20:17:28" itemprop="dateModified" datetime="2025-03-06T20:17:28+08:00">2025-03-06</time>
+              </span>
 
-  
-</div>
+          
 
         </div>
       </header>
@@ -597,6 +755,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
+
+      
           <h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
 <li>生成 SDF 阴影图</li>
 <li>利用阴影图进行光照渲染</li>
@@ -606,7 +766,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/02/27/SDF%E9%9D%A2%E9%83%A8%E9%98%B4%E5%BD%B1/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -617,60 +777,47 @@
     
     
     
-
-    <footer class="post-footer">
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
+  
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/26/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="系日">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 系日">
-      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/26/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/" class="post-title-link" itemprop="url">最小覆盖子串</a>
+          
+            <a href="/2025/02/26/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/" class="post-title-link" itemprop="url">最小覆盖子串</a>
         </h2>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-      <time title="Created: 2025-02-26 00:54:44 / Modified: 00:56:49" itemprop="dateCreated datePublished" datetime="2025-02-26T00:54:44+08:00">2025-02-26</time>
-    </span>
+              <time title="创建时间：2025-02-26 00:54:44 / 修改时间：00:56:49" itemprop="dateCreated datePublished" datetime="2025-02-26T00:54:44+08:00">2025-02-26</time>
+            </span>
 
-  
-</div>
+          
 
         </div>
       </header>
@@ -679,14 +826,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="题目-LeetCode-76"><a href="#题目-LeetCode-76" class="headerlink" title="题目: LeetCode 76"></a>题目: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-window-substring/?envType=study-plan-v2&envId=top-100-liked">LeetCode 76</a></h3><p>给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 “” 。</p>
-<p>示例 1：<br>输入：s &#x3D; “ADOBECODEBANC”, t &#x3D; “ABC”<br>输出：”BANC”<br>解释：最小覆盖子串 “BANC” 包含来自字符串 t 的 ‘A’、’B’ 和 ‘C’。</p>
-<p>示例 2：<br>输入：s &#x3D; “a”, t &#x3D; “a”<br>输出：”a”<br>解释：整个字符串 s 是最小覆盖子串。</p>
-<p>示例 3:<br>输入: s &#x3D; “a”, t &#x3D; “aa”<br>输出: “”<br>解释: t 中两个字符 ‘a’ 均应包含在 s 的子串中，因此没有符合条件的子字符串，返回空字符串。</p>
+
+      
+          <h3 id="题目-LeetCode-76"><a href="#题目-LeetCode-76" class="headerlink" title="题目: LeetCode 76"></a>题目: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-window-substring/?envType=study-plan-v2&amp;envId=top-100-liked">LeetCode 76</a></h3><p>给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 “” 。</p>
+<p>示例 1：<br>输入：s = “ADOBECODEBANC”, t = “ABC”<br>输出：”BANC”<br>解释：最小覆盖子串 “BANC” 包含来自字符串 t 的 ‘A’、’B’ 和 ‘C’。</p>
+<p>示例 2：<br>输入：s = “a”, t = “a”<br>输出：”a”<br>解释：整个字符串 s 是最小覆盖子串。</p>
+<p>示例 3:<br>输入: s = “a”, t = “aa”<br>输出: “”<br>解释: t 中两个字符 ‘a’ 均应包含在 s 的子串中，因此没有符合条件的子字符串，返回空字符串。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/02/26/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -697,233 +846,151 @@
     
     
     
-
-    <footer class="post-footer">
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
+  
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/26/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xiri04">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="系日">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 系日">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/26/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" class="post-title-link" itemprop="url">滑动窗口</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2025-02-26 00:13:18" itemprop="dateCreated datePublished" datetime="2025-02-26T00:13:18+08:00">2025-02-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-02-27 01:23:13" itemprop="dateModified" datetime="2025-02-27T01:23:13+08:00">2025-02-27</time>
-    </span>
 
   
-</div>
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-      </header>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="题目特征"><a href="#题目特征" class="headerlink" title="题目特征"></a>题目特征</h3><ol>
-<li>数组，字符串</li>
-<li>求满足条件的子串（最长&#x2F;最短）</li>
-<li><strong><em>连续</em></strong>（其实子串已经包含了这个条件）</li>
-</ol>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
-<li>最短子串</li>
-<li>最长子串</li>
-<li>滑动窗口大小不变</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/02/26/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Xiri04</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
         
-      
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
     </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
 
 
+      </div>
+    </main>
 
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/23/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xiri04">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="系日">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 系日">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/23/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2025-02-23 01:19:38" itemprop="dateCreated datePublished" datetime="2025-02-23T01:19:38+08:00">2025-02-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/02/23/hello-world/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
+    <footer class="footer">
+      <div class="footer-inner">
         
-      
-    </div>
 
-    
-    
-    
+        
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiri04</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
-  </article>
-</div>
-
-
-
-
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2025</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">Xiri04</span>
-  </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
-    </div>
-  </footer>
-
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="Back to top">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
-
-  
+<script src="/js/schemes/muse.js"></script>
 
 
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -933,12 +1000,77 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
+  
+      
 
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
 
+    
+
+  
 
 </body>
 </html>

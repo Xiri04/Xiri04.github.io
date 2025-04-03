@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="ps:FFT 只是 DFT 的快速算法，在水面模拟中也是起一个优化作用，本质还是 DFT。而更重要的是如何生成高度频谱。 DFT从 FT 到 DTFTFT(傅里叶变换)相关知识见如何理解傅里叶变换。而 DFDT(离散时间傅里叶变换)不过是取一段时间内的时域连续信号将其作为周期信号(周期为 T)进行采样，将 dt 变为$ \Delta t$积分变为求和。那么最终公式即为  X(\omega)&#x3D;\su">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFT水面模拟">
+<meta property="og:url" content="http://example.com/2025/03/16/FFT%E6%B0%B4%E9%9D%A2%E6%A8%A1%E6%8B%9F/index.html">
+<meta property="og:site_name" content="系日">
+<meta property="og:description" content="ps:FFT 只是 DFT 的快速算法，在水面模拟中也是起一个优化作用，本质还是 DFT。而更重要的是如何生成高度频谱。 DFT从 FT 到 DTFTFT(傅里叶变换)相关知识见如何理解傅里叶变换。而 DFDT(离散时间傅里叶变换)不过是取一段时间内的时域连续信号将其作为周期信号(周期为 T)进行采样，将 dt 变为$ \Delta t$积分变为求和。那么最终公式即为  X(\omega)&#x3D;\su">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-15T16:58:27.000Z">
+<meta property="article:modified_time" content="2025-03-22T05:31:51.528Z">
+<meta property="article:author" content="Xiri04">
+<meta property="article:tag" content="DFT">
+<meta property="article:tag" content="渲染">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2025/03/16/FFT%E6%B0%B4%E9%9D%A2%E6%A8%A1%E6%8B%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>FFT水面模拟 | 系日</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">系日</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/16/FFT%E6%B0%B4%E9%9D%A2%E6%A8%A1%E6%8B%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xiri04">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="系日">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          FFT水面模拟
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-16 00:58:27" itemprop="dateCreated datePublished" datetime="2025-03-16T00:58:27+08:00">2025-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-22 13:31:51" itemprop="dateModified" datetime="2025-03-22T13:31:51+08:00">2025-03-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>ps:FFT 只是 DFT 的快速算法，在水面模拟中也是起一个优化作用，本质还是 DFT。而更重要的是如何生成高度频谱。</p>
+<h1 id="DFT"><a href="#DFT" class="headerlink" title="DFT"></a>DFT</h1><h2 id="从-FT-到-DTFT"><a href="#从-FT-到-DTFT" class="headerlink" title="从 FT 到 DTFT"></a>从 FT 到 DTFT</h2><p>FT(傅里叶变换)相关知识见<a href="/2025/03/10/如何理解傅里叶变换/#more">如何理解傅里叶变换</a>。而 DFDT(离散时间傅里叶变换)不过是取一段时间内的时域连续信号将其作为周期信号(周期为 T)进行采样，将 dt 变为$ \Delta t$积分变为求和。那么最终公式即为</p>
+<script type="math/tex; mode=display">
+X(\omega)=\sum_{i=1}^{n}x[n] e^{-j \omega n}</script><p>ps:n 表示第 n 个数而非时间<br>因为$ \omega $连续，此时频域上仍然连续。</p>
+<h2 id="从-DTFT-到-DFT"><a href="#从-DTFT-到-DFT" class="headerlink" title="从 DTFT 到 DFT"></a>从 DTFT 到 DFT</h2><p>从 DTFT 得到连续频谱$X(\omega)$后，对频谱进行采样,采样周期为 $T_s$，进行 N 次采样，将结果进行延拓，那么我们就会得到一个周期为 $ T $,$ T=N T_s $ 的周期序列。而 $\omega$ 变为离散量 $\frac{2\pi}{N}k $。<br>那么最终结果即为</p>
+<script type="math/tex; mode=display">
+X[k]=\sum_{i=1}^{n}x[n] e^{-j \frac{2\pi}{N} nk}</script><h1 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h1><h2 id="e-j-frac-2-pi-N-nk-的性质"><a href="#e-j-frac-2-pi-N-nk-的性质" class="headerlink" title="$ e^{-j \frac{2\pi}{N} nk} $的性质"></a>$ e^{-j \frac{2\pi}{N} nk} $的性质</h2><p>1.周期性</p>
+<script type="math/tex; mode=display">
+e^{-j \frac{2\pi}{N} nk} = e^{-j \frac{2\pi}{N} n(k+N)} = e^{-j \frac{2\pi}{N} (n+N)k} = e^{-j \frac{2\pi}{N} (nk+N)}</script><p>2.对称性<br>当 n 为偶数的时候,这里用 2n 来表示</p>
+<script type="math/tex; mode=display">
+e^{-j \frac{2\pi}{N} 2nk}=e^{-j \frac{2\pi}{\frac{N}{2} nk}}</script><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>若将 $e^{-j \frac{2\pi}{N} nk}$ 记作 W[N,k,n],那么当 n 为偶数的时候，W[N,k,n]=W[N/2,k,n]</p>
+<p>此时对所有偶数项求和 $\sum_{i=0}^{\frac{N}{2}}x[2n]*e^{-j \frac{2\pi}{N}2nk} $</p>
+<p>而对于奇数项，$\sum_{i=1}^{\frac{N}{2}}x[2n+1]*e^{-j \frac{2\pi}{N}(2n+1)k} $</p>
+<p>可以提取出一个 $ e^{-j \frac{2\pi}{N}k} $ 将指数化为偶数 $ e^{-j \frac{2\pi}{N}k} \sum_{i=1}^{\frac{N}{2}} x[2n+1]*e^{-j \frac{2\pi}{N}(2n)k} $<br>这样我们就将原本N的数据量转化为 $\frac{N}{2}$ 的数据量</p>
+<p>而对于奇数项和偶数项，二者也符合原来的形式，那么可以继续拆分，直到只剩下一个点(也就是可以递归)</p>
+<h1 id="水面模拟"><a href="#水面模拟" class="headerlink" title="水面模拟"></a>水面模拟</h1><p>说了这么多终于到了水面模拟这一块了，和其他文章一样，我们主要参考<strong>Simulating Ocean Water</strong>这篇论文。</p>
+<h2 id="海洋公式"><a href="#海洋公式" class="headerlink" title="海洋公式"></a>海洋公式</h2><p>根据论文 4.3 节，基于快速傅里叶变换（FFT）的波浪高度场表示法，将水平位置<strong>x</strong>=(x,z)位置的波浪高度 h(<strong>x</strong>,t)表示为具有复数形式，且振幅随时间周期变化的的正弦波的线性叠加，即:</p>
+<script type="math/tex; mode=display">
+h(\mathbf{x}, t)=\sum_{k=0}^{N} \widetilde{h}(\mathbf{k},t) e^{i \mathbf{k} \cdot \mathbf{x}}</script><p>其中 t 是时间，二维向量 <strong>k</strong>=$(k_x,k_z) ,而 k_x=\frac{2 \pi n}{L_x}, k_z=\frac{2 \pi m}{L_z} n,m 为整数 -\frac{N}{2} \le n \le \frac{N}{2} , -\frac{M}{2} \le m \le \frac{M}{2}$</p>
+<p>$ L_x,L_z $ 分别是 x,z 方向的长度，N,M 分别是 x,z 方向上的采样总数</p>
+<p>$\widetilde{h}(\mathbf{k},t)$则是傅里叶振幅分量</p>
+<p>这样经过 IFFT 后得到的高度场的位置在<strong>x</strong>=$(\frac{n L_x}{N},\frac{m L_z}{M})$ 的值。</p>
+<p>而为了图形学计算，还需要高度场的矢量斜率用于计算法向量，可以通过 FFT 顶点间的有限差分来计算，在之后会详细说明。</p>
+<h2 id="空间谱"><a href="#空间谱" class="headerlink" title="空间谱"></a>空间谱</h2><p>通过对大量浮标、摄影和雷达测量的海洋表面数据进行统计分析，结果表明波浪高度振幅 $\widetilde{h}(\mathbf{k},t)$ 几乎是统计平稳的、独立的高斯波动，其空间谱表示为：</p>
+<script type="math/tex; mode=display">
+P_h(\mathbf{k})= \langle  {|\widetilde{h}^*(\mathbf{k},t)|}^2 \rangle</script><p>尖括号表示集合平均</p>
+<p>而对于波浪谱 $ P_h(\mathbf{k}) $ 有几种分析半经验模型，其一是 Phillips 谱:</p>
+<script type="math/tex; mode=display">
+P_h(\mathbf{k})=A\frac{e^{-1/(kL)^2} }{k^4} | \widehat{\mathbf{k}} · \widehat{\omega} |^2</script><p>其中 A 是用于控制波浪能量的常数</p>
+<p>k 是波数, $k=\frac{2\pi}{\lambda}$ , $ \lambda $ 是波长</p>
+<p>L= $ V^2/g $ 是由风速 V 和重力加速度 g 决定的最大波长</p>
+<p>$\widehat{\omega}$ 是风向的单位向量， $\widehat{\mathbf{k}}$ 是波矢的单位向量</p>
+<p>余弦因子 $| \widehat{\mathbf{k}} · \widehat{\omega} |^2$ 用于消除垂直于风向传播的波浪</p>
+<p><strong>注意</strong>:在高波数区域，此函数的收敛性较差，可以通过乘以乘性因子 $ e^{-k^2l^2} $ 抑制长度小于 l 的波浪</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DFT/" rel="tag"># DFT</a>
+              <a href="/tags/%E6%B8%B2%E6%9F%93/" rel="tag"># 渲染</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/03/10/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/" rel="prev" title="如何理解傅里叶变换">
+      <i class="fa fa-chevron-left"></i> 如何理解傅里叶变换
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/03/26/%E5%9B%9E%E6%BA%AF/" rel="next" title="回溯">
+      回溯 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DFT"><span class="nav-number">1.</span> <span class="nav-text">DFT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E-FT-%E5%88%B0-DTFT"><span class="nav-number">1.1.</span> <span class="nav-text">从 FT 到 DTFT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E-DTFT-%E5%88%B0-DFT"><span class="nav-number">1.2.</span> <span class="nav-text">从 DTFT 到 DFT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FFT"><span class="nav-number">2.</span> <span class="nav-text">FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#e-j-frac-2-pi-N-nk-%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">2.1.</span> <span class="nav-text">$ e^{-j \frac{2\pi}{N} nk} $的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B0%B4%E9%9D%A2%E6%A8%A1%E6%8B%9F"><span class="nav-number">3.</span> <span class="nav-text">水面模拟</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%B7%E6%B4%8B%E5%85%AC%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">海洋公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E8%B0%B1"><span class="nav-number">3.2.</span> <span class="nav-text">空间谱</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Xiri04</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiri04</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
