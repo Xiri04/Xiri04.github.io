@@ -22,17 +22,17 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="效果展示     ps:FFT 只是 DFT 的快速算法，在水面模拟中也是起一个优化作用，本质还是 DFT。而更重要的是如何生成高度频谱。 DFT从 FT 到 DTFT">
+  <meta name="description" content="效果展示     ps:FFT 只是 DFT 的快速算法，在水面模拟中也是起一个优化作用，本质还是 DFT。 DFT从 FT 到 DTFT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FFT水面模拟">
 <meta property="og:url" content="http://example.com/2025/03/16/FFT%E6%B0%B4%E9%9D%A2%E6%A8%A1%E6%8B%9F/index.html">
 <meta property="og:site_name" content="系日">
-<meta property="og:description" content="效果展示     ps:FFT 只是 DFT 的快速算法，在水面模拟中也是起一个优化作用，本质还是 DFT。而更重要的是如何生成高度频谱。 DFT从 FT 到 DTFT">
+<meta property="og:description" content="效果展示     ps:FFT 只是 DFT 的快速算法，在水面模拟中也是起一个优化作用，本质还是 DFT。 DFT从 FT 到 DTFT">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/image/Donelan-Banner.png">
 <meta property="og:image" content="http://example.com/image/Donelan-Banner.png">
 <meta property="article:published_time" content="2025-03-15T16:58:27.000Z">
-<meta property="article:modified_time" content="2025-04-25T11:11:16.521Z">
+<meta property="article:modified_time" content="2025-04-30T04:53:18.350Z">
 <meta property="article:author" content="Xiri04">
 <meta property="article:tag" content="渲染">
 <meta property="article:tag" content="DFT">
@@ -299,7 +299,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-25 19:11:16" itemprop="dateModified" datetime="2025-04-25T19:11:16+08:00">2025-04-25</time>
+                <time title="修改时间：2025-04-30 12:53:18" itemprop="dateModified" datetime="2025-04-30T12:53:18+08:00">2025-04-30</time>
               </span>
 
           
@@ -318,7 +318,7 @@ mjx-container[display="true"] + br {
 </iframe>
 </div>
 
-<p>ps:FFT 只是 DFT 的快速算法，在水面模拟中也是起一个优化作用，本质还是 DFT。而更重要的是如何生成高度频谱。</p>
+<p>ps:FFT 只是 DFT 的快速算法，在水面模拟中也是起一个优化作用，本质还是 DFT。</p>
 <h1 id="DFT"><a href="#DFT" class="headerlink" title="DFT"></a>DFT</h1><h2 id="从-FT-到-DTFT"><a href="#从-FT-到-DTFT" class="headerlink" title="从 FT 到 DTFT"></a>从 FT 到 DTFT</h2><p>FT(傅里叶变换)相关知识见<a href="/2025/03/10/如何理解傅里叶变换/#more">如何理解傅里叶变换</a>。而 DFDT(离散时间傅里叶变换)不过是取一段时间内的时域连续信号将其作为周期信号(周期为 T)进行采样，将 dt 变为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.701ex" height="1.645ex" role="img" focusable="false" viewBox="0 -716 1194 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="394" d="M51 0Q46 4 46 7Q46 9 215 357T388 709Q391 716 416 716Q439 716 444 709Q447 705 616 357T786 7Q786 4 781 0H51ZM507 344L384 596L137 92L383 91H630Q630 93 507 344Z"></path></g><g data-mml-node="mi" transform="translate(833,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g></g></g></svg></mjx-container> 积分变为求和。那么最终公式即为</p>
 <script type="math/tex; mode=display">
 X(\omega)=\sum_{i=1}^{n}x[n] e^{-j \omega n}</script><p>ps:n 表示第 n 个数而非时间<br>因为<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.407ex" height="1.027ex" role="img" focusable="false" viewBox="0 -443 622 454"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D714" d="M495 384Q495 406 514 424T555 443Q574 443 589 425T604 364Q604 334 592 278T555 155T483 38T377 -11Q297 -11 267 66Q266 68 260 61Q201 -11 125 -11Q15 -11 15 139Q15 230 56 325T123 434Q135 441 147 436Q160 429 160 418Q160 406 140 379T94 306T62 208Q61 202 61 187Q61 124 85 100T143 76Q201 76 245 129L253 137V156Q258 297 317 297Q348 297 348 261Q348 243 338 213T318 158L308 135Q309 133 310 129T318 115T334 97T358 83T393 76Q456 76 501 148T546 274Q546 305 533 325T508 357T495 384Z"></path></g></g></g></svg></mjx-container>连续，此时频域上仍然连续。</p>
@@ -625,12 +625,12 @@ x[x]=(-1)^x\sum_{n^\prime=0}^{N-1}x[n^\prime] e^{j \frac{2\pi}{N} n^\prime x}</s
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
